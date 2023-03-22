@@ -1,0 +1,40 @@
+.WeatherCard {
+  border-radius: 1rem;
+  background-color: #f0f0f0;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  padding: 2rem;
+  margin-bottom: 1rem;
+}
+
+.WeatherCard h2 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+.WeatherCard-condition {
+  display: flex;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.WeatherCard-condition img {
+  margin-right: 1rem;
+}
+
+.WeatherCard-temperature {
+  margin: 1rem 0;
+  font-size: 3rem;
+}
+
+.WeatherCard-details {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+.WeatherCard-details p {
+  margin: 0;
+  font-size: 1.2rem;
+  flex: 1;
+  text-align: center;
+}
