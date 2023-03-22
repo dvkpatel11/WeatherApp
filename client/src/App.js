@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import Form from './components/Form';
-import Card from './components/Card';
-import Weather from './components/Weather';
 import './styles/App.css';
+import SearchForm from './components/SearchForm';
+import WeatherCard from './components/WeatherCard';
 
 function App() {
-  const [city, setCity] = useState('');
   const [weatherData, setWeatherData] = useState(null);
-  const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
+  const handleSearch = async (city) => {
+    setLoading(true);
+    setError(null);
 
     try {
       const response = await fetch(`/api/weather/${city}`);
@@ -18,25 +18,23 @@ function App() {
 
       if (response.ok) {
         setWeatherData(data);
-        setError('');
       } else {
-        setWeatherData(null);
-        setError(data.error);
+        setError(data.message);
       }
     } catch (error) {
       console.error(error);
-      setWeatherData(null);
-      setError('Unable to retrieve weather data.');
+      setError('An error occurred while fetching weather data.');
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div className="container">
-      <h1>Weather App</h1>
-      <Form city={city} setCity={setCity} handleSubmit={handleSubmit} />
-      {error && <p className="error">{error}</p>}
-      {weatherData && <Card weatherData={weatherData} />}
-      {weatherData && <Weather weatherData={weatherData} />}
+    <div className="App">
+      <SearchForm onSearch={handleSearch} />
+      {loading && <p>Loading weather data...</p>}
+      {error && <p>{error}</p>}
+      {weatherData && <WeatherCard data={weatherData} />}
     </div>
   );
 }
