@@ -1,9 +1,13 @@
 import React from 'react';
 
-function Card({ children }) {
+function Card({ weatherData }) {
+  const iconUrl = `http://openweathermap.org/img/w/${weatherData.icon}.png`;
+
   return (
     <div className="card">
-      {children}
+      <img src={iconUrl} alt={weatherData.description} />
+      <p className="temp">{Math.round(weatherData.temp)}°C</p>
+      <p className="feels-like">Feels like: {Math.round(weatherData.feelsLike)}°C</p>
     </div>
   );
 }
