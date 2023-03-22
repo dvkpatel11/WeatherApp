@@ -6,6 +6,16 @@ require('dotenv').config(); // load environment variables from .env file
 
 router.get('/:city', async (req, res) => {
   try {
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&units=metric&appid=`);
+
+const express = require('express');
+const axios = require('axios');
+const router = express.Router();
+
+require('dotenv').config(); // load environment variables from .env file
+
+router.get('/api/weather/:city', async (req, res) => {
+  try {
     const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&units=metric&appid=1f51cc58da604a917c31d97eee52c545`);
 
     const weatherData = {
