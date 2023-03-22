@@ -1,20 +1,40 @@
 {
-  "name": "weather-app",
-  "version": "1.0.0",
-  "description": "A weather app built with React and Node",
-  "main": "server/app.js",
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "node-fetch": "^3.1.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3"
+  },
   "scripts": {
     "start": "node server/app.js",
-    "dev": "concurrently \"cd client && npm start\" \"cd server && nodemon app.js\"",
-    "build": "cd client && npm run build"
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
-  "dependencies": {
-    "axios": "^0.24.0",
-    "concurrently": "^6.4.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.2"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
   },
-  "devDependencies": {
-    "nodemon": "^2.0.14"
-  }
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "homepage": "https://{username}.github.io/{repository-name}/"
 }
