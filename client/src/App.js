@@ -2,34 +2,41 @@ import React, { useState } from 'react';
 import Form from './components/Form';
 import Card from './components/Card';
 import Weather from './components/Weather';
+import './styles/App.css';
 
 function App() {
-  const [city, setCity] = useState("");
-  const [weather, setWeather] = useState({});
-  const [error, setError] = useState("");
+  const [city, setCity] = useState('');
+  const [weatherData, setWeatherData] = useState(null);
+  const [error, setError] = useState('');
 
-  const handleSearch = async (e) => {
-    e.preventDefault();
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     try {
       const response = await fetch(`/api/weather/${city}`);
       const data = await response.json();
-      setWeather(data);
-      setError("");
+
+      if (response.ok) {
+        setWeatherData(data);
+        setError('');
+      } else {
+        setWeatherData(null);
+        setError(data.error);
+      }
     } catch (error) {
-      setError("Invalid city name.");
+      console.error(error);
+      setWeatherData(null);
+      setError('Unable to retrieve weather data.');
     }
   };
 
   return (
     <div className="container">
       <h1>Weather App</h1>
-      <Form city={city} setCity={setCity} handleSearch={handleSearch} />
+      <Form city={city} setCity={setCity} handleSubmit={handleSubmit} />
       {error && <p className="error">{error}</p>}
-      {weather.main && (
-        <Card>
-          <Weather weather={weather} />
-        </Card>
-      )}
+      {weatherData && <Card weatherData={weatherData} />}
+      {weatherData && <Weather weatherData={weatherData} />}
     </div>
   );
 }
