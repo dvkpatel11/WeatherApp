@@ -6,7 +6,7 @@ require('dotenv').config(); // load environment variables from .env file
 
 router.get('/:city', async (req, res) => {
   try {
-    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&units=metric&appid=${process.env.OPENWEATHER_API_KEY}`);
+    const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${req.params.city}&units=metric&appid=${1f51cc58da604a917c31d97eee52c545}`);
 
     const weatherData = {
       temp: response.data.main.temp,
