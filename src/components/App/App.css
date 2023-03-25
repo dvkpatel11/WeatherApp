@@ -1,0 +1,58 @@
+.App {
+    text-align: center;
+    height: 100vh;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .background-image {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(3px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding: 1rem;
+  }
+  
+  .bg-transition-enter {
+    opacity: 0;
+  }
+  
+  .bg-transition-enter-active {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+  
+  .bg-transition-exit {
+    opacity: 1;
+  }
+  
+  .bg-transition-exit-active {
+    opacity: 0;
+    transition: opacity 1s;
+  }
+  
+  .search-bar-container {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
